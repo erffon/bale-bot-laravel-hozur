@@ -3,6 +3,7 @@
 namespace App\Services\Bot;
 
 
+use App\Services\Bot\Commands\CheckInCommand;
 use App\Services\Bot\Commands\StartCommand;
 
 class BotService
