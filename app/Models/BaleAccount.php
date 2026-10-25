@@ -15,6 +15,7 @@ class BaleAccount extends Model
         'bot_user_id',
         'firstname',
         'lastname',
+        'verified_at',
     ];
     protected $casts =[
         'verified_at' => 'datetime',
