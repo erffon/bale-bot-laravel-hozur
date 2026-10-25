@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Attendance_session extends Model
+class AttendanceSession extends Model
 {
     protected $fillable =[
         'user_id',
@@ -21,4 +22,9 @@ class Attendance_session extends Model
         'clock_in_at' => 'datetime',
         'clock_out_at' => 'datetime',
     ];
+
+    public function user():belongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
