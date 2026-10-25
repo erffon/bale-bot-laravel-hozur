@@ -30,7 +30,7 @@ class BotService
         $user = $message['from'];
 
         match ($text) {
-            '/start' => $this->start->handle($chatId),
+            '/start' => $this->start->handle($chatId,$message),
             '/checkin' => $this->checkIn->handle($chatId, $user),
 //            '/checkout' => $this->checkOut->handle($chatId),
             default => null,

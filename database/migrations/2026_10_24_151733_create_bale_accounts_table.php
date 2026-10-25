@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->unique()->constrained('users')->cascadeOnDelete();
             $table->string('username')->nullable();
             $table->string('chat_id')->nullable();
+            $table->string('bot_user_id')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->timestamp('verified_at')->nullable();
