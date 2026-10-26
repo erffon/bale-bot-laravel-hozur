@@ -127,6 +127,12 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'bot'=>[
+            'driver'=>'single',
+            'level'=>'debug',
+            'path'=>storage_path('logs/bot.log'),
+        ]
+
     ],
 
 ];

@@ -24,12 +24,12 @@ class StartCommand
 
         Bale::messages()->sendMessage($chat_id, __('bot.welcome'));
 
-        if ($account->wasChanged()) Log::info("user {$message['from']['username']} | with chat_id {$chat_id} was started");
+        if ($account->wasChanged()) Log::channel('bot')->info("user {$message['from']['username']} | with chat_id {$chat_id} was started");
 
         // new user
         if ($account->wasRecentlyCreated) {
 
-            Log::info("user {$message['from']['username']} | with chat_id {$chat_id} created account in the bot.");
+            Log::channel('bot')->info("user {$message['from']['username']} | with chat_id {$chat_id} created account in the bot.");
 
 
         }
