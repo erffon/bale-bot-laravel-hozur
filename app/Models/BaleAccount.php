@@ -16,6 +16,7 @@ class BaleAccount extends Model
         'firstname',
         'lastname',
         'verified_at',
+        'verification_status',
     ];
     protected $casts =[
         'verified_at' => 'datetime',

@@ -19,22 +19,26 @@ class StartCommand
                 'firstname' => $message['from']['first_name'] ?? null,
                 'lastname' => $message['from']['last_name'] ?? null,
                 'bot_user_id' => $message['from']['id'],
-                'verified_at' => now()
             ]);
 
         Bale::messages()->sendMessage($chat_id, __('bot.welcome'));
 
-        if ($account->wasChanged()) Log::channel('bot')->info("user {$message['from']['username']} | with chat_id {$chat_id} was started");
+        // old user started bot
+        if ($account->wasChanged()) Log::channel('bot')->info("user {$message['from']['username']} | with chat_id {$chat_id} visited the bot");
 
         // new user
-        if ($account->wasRecentlyCreated) {
+        if ($account->wasRecentlyCreated || $account->verification_status == 'invalid') {
 
             Log::channel('bot')->info("user {$message['from']['username']} | with chat_id {$chat_id} created account in the bot.");
 
+            if (is_null($account->user_id)) {
+                $user = User::create();
 
+                $account->user()->associate($user);
+                $account->save();
+            }
+
+            Bale::messages()->sendMessage($chat_id, __('bot.enter-employee-code'));
         }
-
-
     }
-
 }

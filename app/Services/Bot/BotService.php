@@ -9,14 +9,13 @@ use App\Services\Bot\Commands\StartCommand;
 class BotService
 {
     public function __construct(
-        private StartCommand $start,
-        private CheckInCommand  $checkIn,
-//        private CheckOutCommand $checkOut,
+        private StartCommand   $start,
+        private CheckInCommand $checkIn,
     )
     {
     }
 
-    public function handle(array $update):void
+    public function handle(array $update): void
     {
         $message = $update['message'] ?? null;
 
@@ -30,9 +29,8 @@ class BotService
         $user = $message['from'];
 
         match ($text) {
-            '/start' => $this->start->handle($chatId,$message),
+            '/start' => $this->start->handle($chatId, $message),
             '/checkin' => $this->checkIn->handle($chatId, $user),
-//            '/checkout' => $this->checkOut->handle($chatId),
             default => null,
         };
     }
